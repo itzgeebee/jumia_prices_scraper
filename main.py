@@ -4,6 +4,7 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 import time
 
+
 chrome_driver_path = "C:/Users/gb/Documents/chromedriver.exe"
 driver_service = Service(executable_path=chrome_driver_path)
 
@@ -50,9 +51,6 @@ while pages > 0:
     scrape.get_details()
     scrape.click_button()
     pages -= 1
-    # print(scrape.spec)
-    # print(scrape.price)
-    # print(scrape.product_link)
 
 a = []
 for i in range(len(scrape.spec)):
@@ -62,7 +60,8 @@ for i in range(len(scrape.spec)):
 df = pd.DataFrame(a, columns=["Spec", "Price", "product link"])
 
 new_csv = df.to_csv("prices.csv", index=False)
+scrape.driver.quit()
 end_time = time.perf_counter()
 
-time_taken = (end_time - start_time) / 60
-print(time_taken, "minutes")
+time_taken = round(((end_time - start_time) / 60), 2)
+print("Completed in", time_taken, "minutes")
