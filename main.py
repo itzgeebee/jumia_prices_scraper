@@ -63,5 +63,6 @@ new_csv = df.to_csv("prices.csv", index=False)
 scrape.driver.quit()
 end_time = time.perf_counter()
 
+
 time_taken = round(((end_time - start_time) / 60), 2)
 print("Completed in", time_taken, "minutes")
